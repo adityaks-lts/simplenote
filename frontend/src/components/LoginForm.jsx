@@ -7,6 +7,7 @@ const LoginForm = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -14,12 +15,14 @@ const LoginForm = () => {
         try {
             const response = await axios.post('https://simplenote-qcl4.onrender.com/login', { username, password });
             localStorage.setItem('token', response.data.token);
+            setSuccess('Login successful!');
             setTimeout(()=>{
                 navigate("/")
             },1000)
             setError('');
         } catch (error) {
             setError('Login failed. Please check your credentials.');
+            setSuccess('')
         }
     };
 
@@ -28,7 +31,7 @@ const LoginForm = () => {
             <Box p={5} maxW="lg" borderRadius="30px" boxShadow='rgba(0, 0, 0, 0.24) 0px 3px 8px;' mx="auto">
                 <Heading mb={4}>Login</Heading>
                 {error && <Alert status="error"><AlertIcon />{error}</Alert>}
-                {!error && <Alert status="success"><AlertIcon />Login successful!</Alert>}
+                {success && <Alert status="success"><AlertIcon />{success}</Alert>}
                 {error && <Alert status="error"><AlertIcon />{error}</Alert>}
                 <VStack spacing={4} align="stretch">
                     <FormControl id="username" isRequired>
