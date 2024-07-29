@@ -28,11 +28,11 @@ const LoginForm = () => {
                 <VStack spacing={4} align="stretch">
                     <FormControl id="username" isRequired>
                         <FormLabel>Username</FormLabel>
-                        <Input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+                        <Input type="text" value={username} placeholder='for eg: aks'  onChange={(e) => setUsername(e.target.value)} />
                     </FormControl>
                     <FormControl id="password" isRequired>
                         <FormLabel>Password</FormLabel>
-                        <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                        <Input type="password" value={password} placeholder='for eg: 12345678' onChange={(e) => setPassword(e.target.value)} />
                     </FormControl>
                     <Text mt={4} textAlign="center" bg='white'>
                         Don't have an account?{' '}
