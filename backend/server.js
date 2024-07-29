@@ -5,9 +5,10 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const app = express();
 const port = 3000;
+const cors = require("cors");
 
 app.use(express.json());
-
+app.use(cors({origin:[process.env.FRONTEND_URL]}))
 // env variable for maintaining secrecy 
 const db_url = process.env.DB_URL;
 const jwt_secret = process.env.JWT_SECRET;
@@ -98,12 +99,13 @@ app.get('/notes', auth, async (req, res) => {
 app.post('/notes', auth, async (req, res) => {
   const { title, description, tasks } = req.body;
 
+
   const newNote = new Note({
     title,
     description,
     tasks: {
-      complete: tasks.complete || [],
-      pending: tasks.pending || []
+      complete: tasks ? tasks.complete || [] : [],
+      pending: tasks ? tasks.pending || [] : []
     }
   });
 
@@ -115,6 +117,35 @@ app.post('/notes', auth, async (req, res) => {
     res.status(500).send(err);
   }
 });
+
+app.post('/notes/:id',auth, async(req,res)=>{
+  const { id } = req.params;
+  const { title, description, tasks} = req.body;
+  const user = await User.findById(req.user.id);
+  const notes = user.notes;
+  console.log(notes);
+  if(notes.indexOf(id) != -1){
+    try {
+      const note = await Note.findByIdAndUpdate(
+        id,
+        { title, description, tasks:tasks || {complete:[],pending:[]} },
+        { new: true }
+      );
+      
+      if (!note) {
+        return res.status(404).json({ message: 'Note not found' });
+      }
+      
+      res.json(note);
+    } catch (error) {
+      res.status(500).json({ message: 'Server error' });
+    }
+  }
+  else{
+    res.status(401).json({message:'No task found'});
+  }
+
+})
 
 app.get('/user', auth, async (req, res) => {
   try {
