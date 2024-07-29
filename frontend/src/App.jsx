@@ -4,13 +4,13 @@ import SignupForm from './components/SignupForm';
 import LoginForm from './components/LoginForm';
 import Notes from './components/Note';
 import PrivateRoute from './components/PrivateRoute';
-import { Box } from '@chakra-ui/react';
+import { Box, Heading } from '@chakra-ui/react';
 
 const App = () => {
   return (
     <Router>
       <Box p={4}>
-        <Heading textAlign="center">My Simple Note</Heading>
+        <Heading py="15px" textAlign="center">My Simple Note</Heading>
         <Routes>
           <Route path="/signup" element={<SignupForm />} />
           <Route path="/login" element={<LoginForm />} />
