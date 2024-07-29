@@ -1,13 +1,21 @@
 import React from 'react';
 import { Box, Button, List, ListItem, Heading, Text } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 
 const NoteList = ({ notes, setSelectedNote, createNewNote }) => {
-  const handleSelectNote = (note) => {
+  const navigate = useNavigate()
+    const handleSelectNote = (note) => {
     setSelectedNote(note);
   };
 
+  const handleLogout = () =>{
+    localStorage.removeItem("token");
+    navigate("/login");
+  }
+
   return (
     <Box w="100%" p={5} borderRightWidth="1px">
+        <Button onClick={handleLogout}>Logout</Button>
       <Heading mb={4}>My Notes</Heading>
       <Button colorScheme="blue" mb={4} onClick={createNewNote}>
         Create New Note
