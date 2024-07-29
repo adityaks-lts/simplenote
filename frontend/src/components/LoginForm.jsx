@@ -14,7 +14,10 @@ const LoginForm = () => {
         try {
             const response = await axios.post('https://simplenote-qcl4.onrender.com/login', { username, password });
             localStorage.setItem('token', response.data.token);
-            navigate('/notes');
+            setTimeout(()=>{
+                navigate("/")
+            },1000)
+            setError('');
         } catch (error) {
             setError('Login failed. Please check your credentials.');
         }
@@ -24,6 +27,8 @@ const LoginForm = () => {
         <Container maxW="lg"  minW="100%" centerContent>
             <Box p={5} maxW="lg" borderRadius="30px" boxShadow='rgba(0, 0, 0, 0.24) 0px 3px 8px;' mx="auto">
                 <Heading mb={4}>Login</Heading>
+                {error && <Alert status="error"><AlertIcon />{error}</Alert>}
+                {!error && <Alert status="success"><AlertIcon />Login successful!</Alert>}
                 {error && <Alert status="error"><AlertIcon />{error}</Alert>}
                 <VStack spacing={4} align="stretch">
                     <FormControl id="username" isRequired>
