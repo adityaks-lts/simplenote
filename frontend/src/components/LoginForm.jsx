@@ -28,7 +28,7 @@ const LoginForm = () => {
 
     return (
         <Container maxW="lg"  minW="100%" centerContent>
-            <Box width="md" p={5} maxW="lg" borderRadius="30px" boxShadow='rgba(0, 0, 0, 0.24) 0px 3px 8px;' mx="auto">
+            <Box width={["100%","md"]} p={5} maxW="lg" borderRadius="30px" boxShadow='rgba(0, 0, 0, 0.24) 0px 3px 8px;' mx="auto">
                 <Heading mb={4}>Login</Heading>
                 {error && <Alert status="error"><AlertIcon />{error}</Alert>}
                 {success && <Alert status="success"><AlertIcon />{success}</Alert>}
