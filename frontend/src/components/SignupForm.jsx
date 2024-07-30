@@ -28,7 +28,7 @@ const SignupForm = () => {
 
     return (
         <Container maxW="xl" centerContent>
-            <Box p={5} maxW="xl" borderRadius="30px" boxShadow='rgba(0, 0, 0, 0.24) 0px 3px 8px;' mx="auto">
+            <Box  width="md" p={5} maxW="xl" borderRadius="30px" boxShadow='rgba(0, 0, 0, 0.24) 0px 3px 8px;' mx="auto">
                 <Heading mb={4}>Sign Up</Heading>
                 {error && <Alert status="error"><AlertIcon />{error}</Alert>}
                 {success && <Alert status="success"><AlertIcon />{success}</Alert>}

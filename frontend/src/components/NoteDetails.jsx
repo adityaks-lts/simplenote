@@ -74,7 +74,7 @@ const NoteDetails = ({ note, setNote, refreshNotes }) => {
         </FormControl>
         <FormControl id="description" isRequired>
           <FormLabel>Description</FormLabel>
-          <Textarea value={description} onChange={(e) => setDescription(e.target.value)} />
+          <Textarea height="20vh" value={description} onChange={(e) => setDescription(e.target.value)} />
         </FormControl>
         <FormControl id="tasks">
           <FormLabel>Tasks</FormLabel>

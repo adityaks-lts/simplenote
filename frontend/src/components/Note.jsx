@@ -45,7 +45,7 @@ const Notes = () => {
     }
 
     return (
-        <Flex>
+        <Flex direction={["column","row"]}>
             <Box flex="1" >
                 <NoteList notes={notes} setSelectedNote={setSelectedNote} createNewNote={createNewNote} />
             </Box>

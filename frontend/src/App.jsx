@@ -9,8 +9,10 @@ import { Box, Heading } from '@chakra-ui/react';
 const App = () => {
   return (
     <Router>
+        <header style={{background:"#142d4c"}}>
+          <Heading py="15px" textAlign="center" color="white" >My Simple Note</Heading>    
+        </header>
       <Box p={4}>
-        <Heading py="15px" textAlign="center">My Simple Note</Heading>
         <Routes>
           <Route path="/signup" element={<SignupForm />} />
           <Route path="/login" element={<LoginForm />} />
